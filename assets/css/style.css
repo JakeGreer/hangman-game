@@ -1,0 +1,64 @@
+
+body {
+	background-color: black;
+}
+
+.header {
+	text-align: center;
+	background-color: #000;
+	color: #fff;
+}
+
+.container {
+	width: 60%;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10% auto;
+	text-align: center;
+	background-color: black;
+	color: white;
+	padding: 50px;
+}
+
+#letters a {
+	background-color: #fff;
+	font-size: 25px;
+	font-weight: bold;
+	font-family: 'Indie Flower', cursive, sans-serif;
+	color: black;
+	padding: 5px;
+	margin: 1px;
+	cursor: pointer;
+	border-radius: 5px;
+
+}
+
+#letters a:hover {
+	background-color: lightblue;
+	color: black;
+}
+
+#letters a .used{
+	color: #000;
+	background-color: #000;
+}
+
+#WORD {
+	font-size: 40px;
+	font-family: 'Indie Flower', cursive, sans-serif;
+}
+
+
+#canvas {
+	background-color: #fff;
+	border: 3px solid red;
+	/*height: 400px;
+	width: 400px;*/
+	margin: 5px auto;
+}
+
+#footer {
+	text-align: center;
+	background-color: #000;
+	color: #fff;
+}

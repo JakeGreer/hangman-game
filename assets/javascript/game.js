@@ -1,0 +1,566 @@
+//Name: Jake Greer
+//Date: 6/24
+//Class: Tuesday/Thursday
+//Assignment: Hangman Game 
+
+// Variables
+//word bank object.
+Words = {};
+Words.List = [];
+
+Words.List[0] = "rainbow";
+Words.List[1] = "television";
+Words.List[2]= "interpol";
+Words.List[3] = "the shins";
+Words.List[4] = "whitesnake";
+Words.List[5] = "the killers";
+Words.List[6] = "scorpions";
+Words.List[7] = "misfits";
+Words.List[8] = "kiss";
+Words.List[9] = "lynyrd skynyrd";
+Words.List[10] = "sex pistols";
+Words.List[11] = "the strokes";
+Words.List[12] = "alice cooper";
+Words.List[13] = "prince";
+Words.List[14] = "pearl jam";
+Words.List[15] = "green day";
+Words.List[16] = "acdc";
+Words.List[17] = "zz top";
+Words.List[18] = "foo fighters";
+Words.List[19] = "dead kennedys";
+Words.List[20] = "arctic monkeys";
+Words.List[21] = "peter gabriel";
+Words.List[22] = "nofx";
+Words.List[23] = "joy division";
+Words.List[24] = "pixies";
+Words.List[25] = "queen";
+
+Words.length = Words.List.length;
+
+//Game object.
+Game = {};
+Game.wordAr = [];
+Game.underlineAr = [];
+
+Game.lives = 7;
+Game.NumInWordBank = Words.length;
+
+Game.Word="test";
+Game.WordU = "";
+
+//Variables used to draw on the canvas;
+var c = document.getElementById("canvas");
+var ctx = c.getContext("2d");
+ctx.lineWidth=3;
+
+/*****************************************************************************************/
+/*****************************************************************************************/
+
+//Functions  
+
+//This function gets a word from the word bank file and stores it in the variable Game.Word
+Game.PullWord = function() {
+  Game.Word = Words.List[(Math.floor(Math.random() *Game.NumInWordBank))];
+}
+
+//This function stores an underline in each index, matching the chosen word, into a new array;
+//It displays it to the html page, representing the blank word;
+Game.SetUnderline = function() {
+  //calling the PullWord function;
+  Game.PullWord();
+
+  for(i = 0; i < Game.Word.length; i++) {
+    Game.wordAr[i] = Game.Word.charAt(i);
+    if (Game.Word.charAt(i) != " ") {
+      Game.underlineAr[i] = "_";
+    }
+    else {
+      Game.underlineAr[i] = "&nbsp;&nbsp;";//If the chosen word has multiple words add a space;
+    }
+  }
+  Game.WordU = Game.underlineAr.join(" ");
+  document.getElementById("WORD").innerHTML = Game.WordU;
+
+}
+
+//This function first checks to see if the letter chosen matches any letters in the word;
+//Then is resets the blank underline array to switch the location of the letter to be the actual letter instead of an underline;
+//If a change was not made to the word it decrements a life;
+//This function finally checks to see if both words are matching and the user has won or if lives has run out and the user has lost;
+Game.UpdateLetter = function(letter) {
+  Game.Changes = 0;
+
+  for(i = 0; i < Game.Word.length; i++) 
+  {
+    Game.wordAr[i] = Game.Word.charAt(i);
+    if(Game.Word.charAt(i) == letter) 
+    {
+      Game.underlineAr[i] = letter;
+      Game.Changes++;
+    }
+  }
+
+  if(Game.Changes < 1) 
+  {
+    Game.lives--;
+    document.getElementById("lives").innerHTML = Game.lives;
+  }
+
+  Game.WordU = Game.underlineAr.join(" ");
+  document.getElementById("WORD").innerHTML = Game.WordU;
+
+  for(i = 0; i < Game.wordAr.length; i++) 
+  {
+    if (Game.Word.charAt(i) != " ") 
+    {
+      Game.wordAr[i] = Game.Word.charAt(i);;
+    }
+    else 
+    {
+      Game.wordAr[i] = "&nbsp;&nbsp;";
+    }
+  }
+
+  Game.wordOne = Game.wordAr.join(" ");
+  Game.wordTwo = Game.underlineAr.join(" ");
+
+  //alert if word are equal and user wins
+  if(Game.wordOne == Game.wordTwo) 
+  {
+    alert("You Win!\n\n" + "The word was " + Game.Word);
+    window.location.reload();
+  }
+  //alert if lives run out
+  if(Game.lives < 1) 
+  {
+    document.getElementById("WORD").innerHTML == Game.Word;
+    alert("You lose!\n\n" + "The word(s) was " + Game.Word);
+    window.location.reload();
+  }
+
+  if(Game.lives == 6) 
+  {
+    Game.DrawHead();
+  }
+  if(Game.lives == 5) 
+  {
+    Game.DrawTorso();
+  }
+  if(Game.lives == 4) 
+  {
+    Game.DrawLeftArm();
+  }
+  if(Game.lives == 3) 
+  {
+    Game.DrawRightArm();
+  }
+  if(Game.lives == 2) 
+  {
+    Game.DrawLeftLeg();
+  }
+  if(Game.lives == 1) 
+  {
+    Game.DrawRightLeg();
+  }
+
+}
+
+/********************************************************************/
+/********************************************************************/
+
+//Javascript functions that write on the canvas;
+
+//The following is the main hangman post and is always active;
+//Main Post vertical bar 1
+ctx.moveTo(30,60);
+ctx.lineTo(30,400);
+ctx.stroke();
+//Main Post vertical bar 2
+ctx.moveTo(50,60);
+ctx.lineTo(50,100);
+ctx.stroke();
+//Main Post vertical bar 3
+ctx.moveTo(50,120);
+ctx.lineTo(50,400);
+ctx.stroke();
+//Main Post vertical bar top
+ctx.moveTo(30,60);
+ctx.lineTo(50,60);
+ctx.stroke();
+//Main Post horizontal bar 1
+ctx.moveTo(50,60);
+ctx.lineTo(225,60);
+ctx.stroke();
+//Main Post horizontal bar 2
+ctx.moveTo(50,80);
+ctx.lineTo(70,80);
+ctx.stroke();
+//Main Post horizontal bar 3
+ctx.moveTo(90,80);
+ctx.lineTo(225,80);
+ctx.stroke();
+//Main Post horizontal bar side
+ctx.moveTo(225,60);
+ctx.lineTo(225,80);
+ctx.stroke();
+//Main post support bar
+ctx.moveTo(30,120);
+ctx.lineTo(90,60);
+ctx.stroke();
+//Main post support bar 2
+ctx.moveTo(30,140);
+ctx.lineTo(110,60);
+ctx.stroke();
+//Rope-Hanging
+ctx.moveTo(225,80);
+ctx.lineTo(225,120);
+ctx.stroke();
+//Rope-bar
+ctx.moveTo(215,60);
+ctx.lineTo(215,80);
+ctx.stroke();
+//Rope-bar 2
+ctx.moveTo(220,60);
+ctx.lineTo(220,80);
+ctx.stroke();
+//Rope-bar 3
+ctx.moveTo(210,60);
+ctx.lineTo(210,80);
+ctx.stroke();
+//bolts 1
+ctx.lineWidth=1;
+ctx.beginPath();
+ctx.arc(35,64, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+//bolts 2
+ctx.beginPath();
+ctx.arc(45,64, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+//bolts 3
+ctx.beginPath();
+ctx.arc(91,64, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+//bolts 4
+ctx.beginPath();
+ctx.arc(100,64, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+//bolts 1
+ctx.beginPath();
+ctx.arc(35,119, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+//bolts 2
+ctx.beginPath();
+ctx.arc(35,129, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+
+//These are the functions that will draw the body parts when activated
+Game.DrawHead = function() {
+  //outer circle
+  ctx.lineWidth=4;
+   ctx.beginPath();
+   ctx.arc(225, 145, 25, 0, Math.PI * 2, true);
+   ctx.moveTo(240, 150);
+   ctx.stroke();
+   // Mouth (clockwise)
+   ctx.beginPath();
+   ctx.arc(225, 150, 15, 0, Math.PI, false);
+   ctx.moveTo(65, 65);
+   ctx.stroke();
+   //eyes-right
+   ctx.beginPath();
+   ctx.arc(233,141,4,0,2*Math.PI, true);
+   ctx.stroke();
+   //eyes-left
+   ctx.beginPath();
+   ctx.arc(217,141,4,0,2*Math.PI, true);
+   ctx.stroke();
+  
+ }
+
+Game.DrawTorso = function() {
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,170);
+  ctx.lineTo(225,260);
+  ctx.stroke();
+}
+Game.DrawLeftArm = function() {
+  //left arm
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,170);
+  ctx.lineTo(200,250);
+  ctx.stroke();
+}
+Game.DrawRightArm = function() {
+  //right arm
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,170);
+  ctx.lineTo(250,250);
+  ctx.stroke();
+}
+Game.DrawLeftLeg = function() {
+  //left leg
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,260);
+  ctx.lineTo(200,300);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(200,300);
+  ctx.lineTo(210,350);
+  ctx.stroke();
+}
+Game.DrawRightLeg = function() {
+  //right leg
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,260);
+  ctx.lineTo(215,310);
+  ctx.stroke();
+  ctx.moveTo(215,310);
+  ctx.lineTo(228,355);
+  ctx.stroke();
+}
+
+/********************************************************************/
+/********************************************************************/
+
+//javascript connecting each button to the appropriate letter;
+
+$(function(){
+  $("#a").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("a");
+      document.getElementById("a").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#b").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("b");
+      document.getElementById("b").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#c").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("c");
+      document.getElementById("c").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#d").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("d");
+      document.getElementById("d").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#e").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("e");
+      document.getElementById("e").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#f").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("f");
+      document.getElementById("f").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#g").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("g");
+      document.getElementById("g").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#h").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("h");
+      document.getElementById("h").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#i").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("i");
+      document.getElementById("i").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#j").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("j");
+      document.getElementById("j").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#k").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("k");
+      document.getElementById("k").style.display="none";
+  });
+  }
+);$(function(){
+  $("#l").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("l");
+      document.getElementById("l").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#m").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("m");
+      document.getElementById("m").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#n").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("n");
+      document.getElementById("n").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#o").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("o");
+      document.getElementById("o").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#p").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("p");
+      document.getElementById("p").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#q").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("q");
+      document.getElementById("q").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#r").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("r");
+      document.getElementById("r").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#s").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("s");
+      document.getElementById("s").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#t").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("t");
+      document.getElementById("t").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#u").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("u");
+      document.getElementById("u").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#v").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("v");
+      document.getElementById("v").style.display="none";
+  });
+  }
+);$(function(){
+  $("#w").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("w");
+      document.getElementById("w").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#x").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("x");
+      document.getElementById("x").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#y").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("y");
+      document.getElementById("y").style.display="none";
+  });
+  }
+);
+
+$(function(){
+  $("#z").click(function(event) {
+      event.preventDefault();
+      Game.UpdateLetter("z");
+      document.getElementById("z").style.display="none";
+  });
+  }
+);
+
+//Calling functions to pull word and set underline.
+Game.PullWord();
+
+Game.SetUnderline();
+
