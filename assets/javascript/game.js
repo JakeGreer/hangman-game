@@ -127,14 +127,14 @@ Game.UpdateLetter = function(letter) {
   //alert if word are equal and user wins
   if(Game.wordOne == Game.wordTwo) 
   {
-    alert("You Win!\n\n" + "The word was " + Game.Word);
+    alert("You Win!\n\n" + "The word was \"" + Game.Word + "\"");
     window.location.reload();
   }
   //alert if lives run out
   if(Game.lives < 1) 
   {
     document.getElementById("WORD").innerHTML == Game.Word;
-    alert("You lose!\n\n" + "The word(s) was " + Game.Word);
+    alert("You lose!\n\n" + "The word(s) was \"" + Game.Word + "\"");
     window.location.reload();
   }
 
