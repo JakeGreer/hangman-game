@@ -35,6 +35,8 @@ Words.List[23] = "joy division";
 Words.List[24] = "pixies";
 Words.List[25] = "queen";
 Words.List[26] = "led zeppelin";
+Words.List[27] = "the beatles";
+Words.List[28] = "pink floyd";
 
 Words.length = Words.List.length;
 
@@ -49,8 +51,36 @@ Game.NumInWordBank = Words.length;
 Game.Word="test";
 Game.WordU = "";
 //Variables used for audio files
-var audio1 = new Audio('assets/images/ACDC_-_Back_In_Black-sample.ogg');
+var audio0 = new Audio("assets/images/rainbow (mp3cut.net).mp3");
+var audio1 = new Audio("assets/images/television (mp3cut.net).mp3");
+var audio2 = new Audio("assets/images/interpol (mp3cut.net).mp3");
+var audio3 = new Audio("assets/images/the-shins (mp3cut.net).mp3");
+var audio4 = new Audio("assets/images/whitesnake (mp3cut.net).mp3");
+var audio5 = new Audio("assets/images/the-killers (mp3cut.net).mp3");
+var audio6 = new Audio("assets/images/scorpions (mp3cut.net).mp3");
+var audio7 = new Audio("assets/images/misfits (mp3cut.net).mp3");
+var audio8 = new Audio("assets/images/kiss (mp3cut.net).mp3");
+var audio9 = new Audio("assets/images/lynyrd-skynyrd (mp3cut.net).mp3");
+var audio10 = new Audio("assets/images/sex-pistols (mp3cut.net).mp3");
+var audio11 = new Audio("assets/images/the-strokes (mp3cut.net).mp3");
+var audio12 = new Audio("assets/images/");
+var audio13 = new Audio("assets/images/");
+var audio14 = new Audio("assets/images/");
 var audio15 = new Audio("assets/images/GreenDay_-_I_walk_alone_cut_(mp3.pm).mp3");
+var audio16 = new Audio('assets/images/ACDC_-_Back_In_Black-sample.ogg');
+var audio17 = new Audio("assets/images/zz-top (mp3cut.net).mp3");
+var audio18 = new Audio("assets/images/");
+var audio19 = new Audio("assets/images/");
+var audio20 = new Audio("assets/images/");
+var audio21 = new Audio("assets/images/");
+var audio22 = new Audio("assets/images/");
+var audio23 = new Audio("assets/images/");
+var audio24 = new Audio("assets/images/");
+var audio25 = new Audio("assets/images/");
+var audio26 = new Audio("assets/images/led-zeppelin (mp3cut.net).mp3");
+var audio27 = new Audio("assets/images/pennylane (mp3cut.net).mp3");
+var audio28 = new Audio("assets/images/pink-floyd (mp3cut.net).mp3");
+
 
 //Variables used to draw on the canvas;
 var c = document.getElementById("canvas");
@@ -141,14 +171,95 @@ Game.UpdateLetter = function(letter) {
   //alert if word are equal and user wins
   if(Game.wordOne == Game.wordTwo) 
   {
-    if(Game.Word == 'acdc') {
+    if(Game.Word == 'rainbow') {
+      audio0.play();
+    }
+    if(Game.Word == 'television') {
       audio1.play();
+    }
+    if(Game.Word == 'interpol') {
+      audio2.play();
+    }
+    if(Game.Word == 'the shins') {
+      audio3.play();
+    }
+    if(Game.Word == 'whitesnake') {
+      audio4.play();
+    }
+    if(Game.Word == 'the killers') {
+      audio5.play();
+    }
+    if(Game.Word == 'scorpions') {
+      audio6.play();
+    }
+    if(Game.Word == 'misfits') {
+      audio7.play();
+    }
+    if(Game.Word == 'kiss') {
+      audio8.play();
+    }
+    if(Game.Word == 'lynyrd skynyrd') {
+      audio9.play();
+    }
+    if(Game.Word == 'sex pistols') {
+      audio10.play();
+    }
+    if(Game.Word == 'the strokes') {
+      audio11.play();
+    }
+    if(Game.Word == 'alice cooper') {
+      audio12.play();
+    }
+    if(Game.Word == 'prince') {
+      audio13.play();
+    }
+    if(Game.Word == 'pearl jam') {
+      audio14.play();
     }
     if(Game.Word == 'green day') {
       audio15.play();
     }
+    if(Game.Word == 'acdc') {
+      audio16.play();
+    }
+    if(Game.Word == 'zz top') {
+      audio17.play();
+    }
+    if(Game.Word == 'foo fighters') {
+      audio18.play();
+    }
+    if(Game.Word == 'dead kennedys') {
+      audio19.play();
+    }
+    if(Game.Word == 'arctic monkeys') {
+      audio20.play();
+    }
+    if(Game.Word == 'peter gabriel') {
+      audio21.play();
+    }
+    if(Game.Word == 'nofx') {
+      audio22.play();
+    }
+    if(Game.Word == 'joy division') {
+      audio23.play();
+    }
+    if(Game.Word == 'pixies') {
+      audio24.play();
+    }
+    if(Game.Word == 'queen') {
+      audio25.play();
+    }
+    if(Game.Word == 'led zeppelin') {
+      audio26.play();
+    }
+    if(Game.Word == 'the beatles') {
+      audio27.play();
+    }
+    if(Game.Word == 'pink floyd') {
+      audio28.play();
+    }
     document.getElementById("WORD").innerHTML == Game.Word;
-    myVar = setTimeout(Game.AlertWin, 6000);
+    myVar = setTimeout(Game.AlertWin, 15000);
   }
   //alert if lives run out
   if(Game.lives < 1) 
