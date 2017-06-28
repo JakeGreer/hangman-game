@@ -34,6 +34,7 @@ Words.List[22] = "nofx";
 Words.List[23] = "joy division";
 Words.List[24] = "pixies";
 Words.List[25] = "queen";
+Words.List[26] = "led zeppelin";
 
 Words.length = Words.List.length;
 
@@ -47,11 +48,14 @@ Game.NumInWordBank = Words.length;
 
 Game.Word="test";
 Game.WordU = "";
+//Variables used for audio files
+var audio1 = new Audio('assets/images/ACDC_-_Back_In_Black-sample.ogg');
+var audio15 = new Audio("assets/images/GreenDay_-_I_walk_alone_cut_(mp3.pm).mp3");
 
 //Variables used to draw on the canvas;
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
-ctx.lineWidth=3;
+
 
 /*****************************************************************************************/
 /*****************************************************************************************/
@@ -81,6 +85,16 @@ Game.SetUnderline = function() {
   Game.WordU = Game.underlineAr.join(" ");
   document.getElementById("WORD").innerHTML = Game.WordU;
 
+}
+
+Game.AlertWin = function() {
+  alert("You Win!\n\n" + "The word was \"" + Game.Word + "\"");
+  window.location.reload();
+}
+
+Game.AlertLoss = function() {
+  alert("You lose!\n\n" + "The word(s) was \"" + Game.Word + "\"");
+  window.location.reload();
 }
 
 //This function first checks to see if the letter chosen matches any letters in the word;
@@ -127,17 +141,22 @@ Game.UpdateLetter = function(letter) {
   //alert if word are equal and user wins
   if(Game.wordOne == Game.wordTwo) 
   {
-    alert("You Win!\n\n" + "The word was \"" + Game.Word + "\"");
-    window.location.reload();
+    if(Game.Word == 'acdc') {
+      audio1.play();
+    }
+    if(Game.Word == 'green day') {
+      audio15.play();
+    }
+    document.getElementById("WORD").innerHTML == Game.Word;
+    myVar = setTimeout(Game.AlertWin, 6000);
   }
   //alert if lives run out
   if(Game.lives < 1) 
   {
     document.getElementById("WORD").innerHTML == Game.Word;
-    alert("You lose!\n\n" + "The word(s) was \"" + Game.Word + "\"");
-    window.location.reload();
+    myVar = setTimeout(Game.AlertLoss, 1000);
   }
-
+  //calls drawing functions for each lif lost;
   if(Game.lives == 6) 
   {
     Game.DrawHead();
@@ -171,6 +190,17 @@ Game.UpdateLetter = function(letter) {
 //Javascript functions that write on the canvas;
 
 //The following is the main hangman post and is always active;
+//Main post base
+ctx.lineWidth=3;
+ctx.moveTo(30,390);
+ctx.lineTo(123,390);
+ctx.stroke();
+ctx.moveTo(30,400);
+ctx.lineTo(120,400);
+ctx.stroke();
+ctx.moveTo(120,390);
+ctx.lineTo(120,400);
+ctx.stroke();
 //Main Post vertical bar 1
 ctx.moveTo(30,60);
 ctx.lineTo(30,400);
@@ -181,7 +211,7 @@ ctx.lineTo(50,100);
 ctx.stroke();
 //Main Post vertical bar 3
 ctx.moveTo(50,120);
-ctx.lineTo(50,400);
+ctx.lineTo(50,390);
 ctx.stroke();
 //Main Post vertical bar top
 ctx.moveTo(30,60);
@@ -244,13 +274,31 @@ ctx.stroke();
 ctx.beginPath();
 ctx.arc(100,64, 2, 0, Math.PI * 2, true);
 ctx.stroke();
-//bolts 1
+//bolts 5
 ctx.beginPath();
 ctx.arc(35,119, 2, 0, Math.PI * 2, true);
 ctx.stroke();
-//bolts 2
+//bolts 6
 ctx.beginPath();
 ctx.arc(35,129, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+//bolts 7
+ctx.lineWidth=1;
+ctx.beginPath();
+ctx.arc(35,75, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+//bolts 8
+ctx.beginPath();
+ctx.arc(45,75, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+//bolts 9
+ctx.lineWidth=1;
+ctx.beginPath();
+ctx.arc(36,395, 2, 0, Math.PI * 2, true);
+ctx.stroke();
+//bolts 10
+ctx.beginPath();
+ctx.arc(46,395, 2, 0, Math.PI * 2, true);
 ctx.stroke();
 
 //These are the functions that will draw the body parts when activated
@@ -284,6 +332,7 @@ Game.DrawTorso = function() {
   ctx.lineTo(225,260);
   ctx.stroke();
 }
+
 Game.DrawLeftArm = function() {
   //left arm
   ctx.lineWidth=4;
@@ -292,6 +341,7 @@ Game.DrawLeftArm = function() {
   ctx.lineTo(200,250);
   ctx.stroke();
 }
+
 Game.DrawRightArm = function() {
   //right arm
   ctx.lineWidth=4;
@@ -300,6 +350,7 @@ Game.DrawRightArm = function() {
   ctx.lineTo(250,250);
   ctx.stroke();
 }
+
 Game.DrawLeftLeg = function() {
   //left leg
   ctx.lineWidth=4;
@@ -312,6 +363,7 @@ Game.DrawLeftLeg = function() {
   ctx.lineTo(210,350);
   ctx.stroke();
 }
+
 Game.DrawRightLeg = function() {
   //right leg
   ctx.lineWidth=4;
