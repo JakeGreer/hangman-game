@@ -63,15 +63,15 @@ var audio8 = new Audio("assets/images/kiss (mp3cut.net).mp3");
 var audio9 = new Audio("assets/images/lynyrd-skynyrd (mp3cut.net).mp3");
 var audio10 = new Audio("assets/images/sex-pistols (mp3cut.net).mp3");
 var audio11 = new Audio("assets/images/the-strokes (mp3cut.net).mp3");
-var audio12 = new Audio("assets/images/");
-var audio13 = new Audio("assets/images/");
-var audio14 = new Audio("assets/images/");
+var audio12 = new Audio("assets/images/alice-cooper (mp3cut.net).mp3");
+var audio13 = new Audio("assets/images/prince (mp3cut.net).mp3");
+var audio14 = new Audio("assets/images/pearl-jam (mp3cut.net).mp3");
 var audio15 = new Audio("assets/images/GreenDay_-_I_walk_alone_cut_(mp3.pm).mp3");
 var audio16 = new Audio('assets/images/ACDC_-_Back_In_Black-sample.ogg');
 var audio17 = new Audio("assets/images/zz-top (mp3cut.net).mp3");
-var audio18 = new Audio("assets/images/");
-var audio19 = new Audio("assets/images/");
-var audio20 = new Audio("assets/images/");
+var audio18 = new Audio("assets/images/foo-fighters (mp3cut.net).mp3");
+var audio19 = new Audio("assets/images/dead-kennedys (mp3cut.net).mp3");
+var audio20 = new Audio("assets/images/arctic-monkeys (mp3cut.net).mp3");
 var audio21 = new Audio("assets/images/");
 var audio22 = new Audio("assets/images/");
 var audio23 = new Audio("assets/images/");
@@ -259,7 +259,7 @@ Game.UpdateLetter = function(letter) {
       audio28.play();
     }
     document.getElementById("WORD").innerHTML == Game.Word;
-    myVar = setTimeout(Game.AlertWin, 15000);
+    myVar = setTimeout(Game.AlertWin, 17000);
   }
   //alert if lives run out
   if(Game.lives < 1) 
