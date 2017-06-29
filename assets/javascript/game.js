@@ -3,6 +3,9 @@
 //Class: Tuesday/Thursday
 //Assignment: Hangman Game 
 
+/********************************************************************/
+/********************************************************************/
+
 // Variables
 //word bank object.
 Words = {};
@@ -29,7 +32,7 @@ Words.List[17] = "zz top";
 Words.List[18] = "foo fighters";
 Words.List[19] = "dead kennedys";
 Words.List[20] = "arctic monkeys";
-Words.List[21] = "peter gabriel";
+Words.List[21] = "rolling stones";
 Words.List[22] = "nofx";
 Words.List[23] = "joy division";
 Words.List[24] = "pixies";
@@ -41,6 +44,9 @@ Words.List[29] = "guns n roses";
 
 Words.length = Words.List.length;
 
+/********************************************************************/
+/********************************************************************/
+
 //Game object.
 Game = {};
 Game.wordAr = [];
@@ -51,6 +57,10 @@ Game.NumInWordBank = Words.length;
 
 Game.Word="test";
 Game.WordU = "";
+
+/********************************************************************/
+/********************************************************************/
+
 //Variables used for audio files
 var audio0 = new Audio("assets/images/rainbow (mp3cut.net).mp3");
 var audio1 = new Audio("assets/images/television (mp3cut.net).mp3");
@@ -73,7 +83,7 @@ var audio17 = new Audio("assets/images/zz-top (mp3cut.net).mp3");
 var audio18 = new Audio("assets/images/foo-fighters (mp3cut.net).mp3");
 var audio19 = new Audio("assets/images/dead-kennedys (mp3cut.net).mp3");
 var audio20 = new Audio("assets/images/arctic-monkeys (mp3cut.net).mp3");
-var audio21 = new Audio("assets/images/peter-gabriel (mp3cut.net).mp3");
+var audio21 = new Audio("assets/images/rolling-stones (mp3cut.net).mp3");
 var audio22 = new Audio("assets/images/nofx (mp3cut.net).mp3");
 var audio23 = new Audio("assets/images/joy-division (mp3cut.net).mp3");
 var audio24 = new Audio("assets/images/pixies (mp3cut.net).mp3");
@@ -83,10 +93,13 @@ var audio27 = new Audio("assets/images/pennylane (mp3cut.net).mp3");
 var audio28 = new Audio("assets/images/pink-floyd (mp3cut.net).mp3");
 var audio29 = new Audio("assets/images/guns-n-roses (mp3cut.net).mp3");
 
+/********************************************************************/
+/********************************************************************/
 
 //Variables used to draw on the canvas;
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
+ctx.strokeStyle = '#ffffff';
 
 
 /*****************************************************************************************/
@@ -128,6 +141,7 @@ Game.AlertLoss = function() {
   alert("You lose!\n\n" + "The word(s) was \"" + Game.Word + "\"");
   window.location.reload();
 }
+
 
 //This function first checks to see if the letter chosen matches any letters in the word;
 //Then is resets the blank underline array to switch the location of the letter to be the actual letter instead of an underline;
@@ -172,6 +186,7 @@ Game.UpdateLetter = function(letter) {
   Game.DrawMan();
 
   //alert if word are equal and user wins
+  //checks to see which word and plays the audio based off of the answer.
   if(Game.wordOne == Game.wordTwo) 
   {
     if(Game.Word == 'rainbow') {
@@ -237,7 +252,7 @@ Game.UpdateLetter = function(letter) {
     if(Game.Word == 'arctic monkeys') {
       audio20.play();
     }
-    if(Game.Word == 'peter gabriel') {
+    if(Game.Word == 'rolling stones') {
       audio21.play();
     }
     if(Game.Word == 'nofx') {
@@ -275,6 +290,11 @@ Game.UpdateLetter = function(letter) {
   }
 }
 
+
+/********************************************************************/
+/********************************************************************/
+
+//Javascript functions that write on the canvas;
 
 //These are the functions that will draw the body parts when activated
 Game.DrawHead = function() {
@@ -375,10 +395,6 @@ Game.DrawMan = function() {
   }
 }
 
-/********************************************************************/
-/********************************************************************/
-
-//Javascript functions that write on the canvas;
 
 //The following is the main hangman post and is always active;
 //Main post base
@@ -393,6 +409,7 @@ ctx.stroke();
 ctx.moveTo(120,390);
 ctx.lineTo(120,400);
 ctx.stroke();
+
 //Main Post vertical bar 1
 ctx.moveTo(30,60);
 ctx.lineTo(30,400);
@@ -497,7 +514,122 @@ ctx.stroke();
 /********************************************************************/
 /********************************************************************/
 
-//javascript connecting each button to the appropriate letter;
+//javascript connecting the keyboard to the appropriate letter;
+document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+      if (userGuess == 'a') {
+        Game.UpdateLetter("a");
+        document.getElementById("a").style.display="none";
+      }
+      if (userGuess == 'b') {
+        Game.UpdateLetter("b");
+        document.getElementById("b").style.display="none";
+      }
+      if (userGuess == 'c') {
+        Game.UpdateLetter("c");
+        document.getElementById("c").style.display="none";
+      }
+      if (userGuess == 'd') {
+        Game.UpdateLetter("d");
+        document.getElementById("d").style.display="none";
+      }
+      if (userGuess == 'e') {
+        Game.UpdateLetter("e");
+        document.getElementById("e").style.display="none";
+      }
+      if (userGuess == 'f') {
+        Game.UpdateLetter("f");
+        document.getElementById("f").style.display="none";
+      }
+      if (userGuess == 'g') {
+        Game.UpdateLetter("g");
+        document.getElementById("g").style.display="none";
+      }
+      if (userGuess == 'h') {
+        Game.UpdateLetter("h");
+        document.getElementById("h").style.display="none";
+      }
+      if (userGuess == 'i') {
+        Game.UpdateLetter("i");
+        document.getElementById("i").style.display="none";
+      }
+      if (userGuess == 'j') {
+        Game.UpdateLetter("j");
+        document.getElementById("j").style.display="none";
+      }
+      if (userGuess == 'k') {
+        Game.UpdateLetter("k");
+        document.getElementById("k").style.display="none";
+      }
+      if (userGuess == 'l') {
+        Game.UpdateLetter("l");
+        document.getElementById("l").style.display="none";
+      }
+      if (userGuess == 'm') {
+        Game.UpdateLetter("m");
+        document.getElementById("m").style.display="none";
+      }
+      if (userGuess == 'n') {
+        Game.UpdateLetter("n");
+        document.getElementById("n").style.display="none";
+      }
+      if (userGuess == 'o') {
+        Game.UpdateLetter("o");
+        document.getElementById("o").style.display="none";
+      }
+      if (userGuess == 'p') {
+        Game.UpdateLetter("p");
+        document.getElementById("p").style.display="none";
+      }
+      if (userGuess == 'q') {
+        Game.UpdateLetter("q");
+        document.getElementById("q").style.display="none";
+      }
+      if (userGuess == 'r') {
+        Game.UpdateLetter("r");
+        document.getElementById("r").style.display="none";
+      }
+      if (userGuess == 's') {
+        Game.UpdateLetter("s");
+        document.getElementById("s").style.display="none";
+      }
+      if (userGuess == 't') {
+        Game.UpdateLetter("t");
+        document.getElementById("t").style.display="none";
+      }
+      if (userGuess == 'u') {
+        Game.UpdateLetter("u");
+        document.getElementById("u").style.display="none";
+      }
+      if (userGuess == 'v') {
+        Game.UpdateLetter("v");
+        document.getElementById("v").style.display="none";
+      }
+      if (userGuess == 'w') {
+        Game.UpdateLetter("w");
+        document.getElementById("w").style.display="none";
+      }
+      if (userGuess == 'x') {
+        Game.UpdateLetter("x");
+        document.getElementById("x").style.display="none";
+      }
+      if (userGuess == 'y') {
+        Game.UpdateLetter("y");
+        document.getElementById("y").style.display="none";
+      }
+      if (userGuess == 'z') {
+        Game.UpdateLetter("z");
+        document.getElementById("z").style.display="none";
+      }
+};
+
+/****************************************************************************************/
+/****************************************************************************************/
+
+//These functions are for the push letters
+//Upon click they run the update letter function and dissapear from sight.
 
 $(function(){
   $("#a").click(function(event) {
@@ -726,8 +858,12 @@ $(function(){
       Game.UpdateLetter("z");
       document.getElementById("z").style.display="none";
   });
-  }
+}
 );
+
+/****************************************************************************************/
+/****************************************************************************************/
+
 
 //Calling functions to pull word and set underline.
 Game.PullWord();

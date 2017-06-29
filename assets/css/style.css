@@ -11,10 +11,10 @@ body {
 	font-family: 'Indie Flower', cursive, sans-serif;
 	background-color: #000;
 	color: #fff;
+	padding-bottom: 10px;
 }
 
 .container {
-	width: 60%;
 	border-radius: 5px;
 	margin: 0 auto;
 	text-align: center;
@@ -22,20 +22,7 @@ body {
 	color: white;
 	padding: 0;
 	position: relative;
-}
-
-#pic1 img {
-	position: absolute;
-	top: 270px;
-	right: -120px;
-	margin-bottom: -30px;
-	
-}
-
-#pic2 img {
-	position: absolute;
-	top: 130px;
-	left: 40px;
+	overflow: auto;
 }
 
 #letters a {
@@ -48,6 +35,7 @@ body {
 	margin: 1px 1px 20px 1px;
 	cursor: pointer;
 	border-radius: 5px;
+	line-height: 2;
 
 }
 
@@ -63,9 +51,12 @@ body {
 
 
 #canvas {
-	background-color: #fff;
-	border: 5px solid #b30000;
-	
+	background: url(../images/guitar.jpg);
+	background-color: #000;
+	background-size: 400px;
+	background-position: left;
+	background-repeat: no-repeat;
+	border: 5px solid #fff;	
 	margin: 0 auto;
 }
 
@@ -89,3 +80,10 @@ body {
 		margin: 1px 1px 30px 1px;
 	}
 }
+
+
+
+
+
+
+
