@@ -37,6 +37,7 @@ Words.List[25] = "queen";
 Words.List[26] = "led zeppelin";
 Words.List[27] = "the beatles";
 Words.List[28] = "pink floyd";
+Words.List[29] = "guns n roses";
 
 Words.length = Words.List.length;
 
@@ -72,14 +73,15 @@ var audio17 = new Audio("assets/images/zz-top (mp3cut.net).mp3");
 var audio18 = new Audio("assets/images/foo-fighters (mp3cut.net).mp3");
 var audio19 = new Audio("assets/images/dead-kennedys (mp3cut.net).mp3");
 var audio20 = new Audio("assets/images/arctic-monkeys (mp3cut.net).mp3");
-var audio21 = new Audio("assets/images/");
-var audio22 = new Audio("assets/images/");
-var audio23 = new Audio("assets/images/");
-var audio24 = new Audio("assets/images/");
-var audio25 = new Audio("assets/images/");
+var audio21 = new Audio("assets/images/peter-gabriel (mp3cut.net).mp3");
+var audio22 = new Audio("assets/images/nofx (mp3cut.net).mp3");
+var audio23 = new Audio("assets/images/joy-division (mp3cut.net).mp3");
+var audio24 = new Audio("assets/images/pixies (mp3cut.net).mp3");
+var audio25 = new Audio("assets/images/queen (mp3cut.net).mp3");
 var audio26 = new Audio("assets/images/led-zeppelin (mp3cut.net).mp3");
 var audio27 = new Audio("assets/images/pennylane (mp3cut.net).mp3");
 var audio28 = new Audio("assets/images/pink-floyd (mp3cut.net).mp3");
+var audio29 = new Audio("assets/images/guns-n-roses (mp3cut.net).mp3");
 
 
 //Variables used to draw on the canvas;
@@ -134,6 +136,7 @@ Game.AlertLoss = function() {
 Game.UpdateLetter = function(letter) {
   Game.Changes = 0;
 
+
   for(i = 0; i < Game.Word.length; i++) 
   {
     Game.wordAr[i] = Game.Word.charAt(i);
@@ -143,7 +146,6 @@ Game.UpdateLetter = function(letter) {
       Game.Changes++;
     }
   }
-
   if(Game.Changes < 1) 
   {
     Game.lives--;
@@ -167,6 +169,7 @@ Game.UpdateLetter = function(letter) {
 
   Game.wordOne = Game.wordAr.join(" ");
   Game.wordTwo = Game.underlineAr.join(" ");
+  Game.DrawMan();
 
   //alert if word are equal and user wins
   if(Game.wordOne == Game.wordTwo) 
@@ -258,6 +261,9 @@ Game.UpdateLetter = function(letter) {
     if(Game.Word == 'pink floyd') {
       audio28.play();
     }
+    if(Game.Word == 'guns n roses') {
+      audio29.play();
+    }
     document.getElementById("WORD").innerHTML == Game.Word;
     myVar = setTimeout(Game.AlertWin, 17000);
   }
@@ -267,10 +273,85 @@ Game.UpdateLetter = function(letter) {
     document.getElementById("WORD").innerHTML == Game.Word;
     myVar = setTimeout(Game.AlertLoss, 1000);
   }
-  //calls drawing functions for each lif lost;
+}
+
+
+//These are the functions that will draw the body parts when activated
+Game.DrawHead = function() {
+  //outer circle
+  ctx.lineWidth=4;
+   ctx.beginPath();
+   ctx.arc(225, 145, 25, 0, Math.PI * 2, true);
+   ctx.stroke();
+   
+   //eyes-right
+   ctx.beginPath();
+   ctx.arc(233,141,4,0,2*Math.PI, true);
+   ctx.stroke();
+   //eyes-left
+   ctx.beginPath();
+   ctx.arc(217,141,4,0,2*Math.PI, true);
+   ctx.stroke();
+  
+ }
+
+  // Mouth (clockwise)
+Game.DrawMouth = function() {
+   ctx.beginPath();
+   ctx.arc(225, 150, 15, 0, Math.PI, false);
+   ctx.stroke();
+}
+
+Game.DrawTorso = function() {
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,170);
+  ctx.lineTo(225,250);
+  ctx.stroke();
+}
+
+Game.DrawLeftArm = function() {
+  //left arm
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,170);
+  ctx.lineTo(200,230);
+  ctx.stroke();
+}
+
+Game.DrawRightArm = function() {
+  //right arm
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,170);
+  ctx.lineTo(250,230);
+  ctx.stroke();
+}
+
+Game.DrawLeftLeg = function() {
+  //left leg
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,250);
+  ctx.lineTo(200,320);
+  ctx.stroke();
+}
+
+Game.DrawRightLeg = function() {
+  //right leg
+  ctx.lineWidth=4;
+  ctx.beginPath();
+  ctx.moveTo(225,250);
+  ctx.lineTo(250,320);
+  ctx.stroke();
+}
+
+Game.DrawMan = function() {
+      //calls drawing functions for each lif lost;
   if(Game.lives == 6) 
   {
     Game.DrawHead();
+    Game.DrawMouth();
   }
   if(Game.lives == 5) 
   {
@@ -292,7 +373,6 @@ Game.UpdateLetter = function(letter) {
   {
     Game.DrawRightLeg();
   }
-
 }
 
 /********************************************************************/
@@ -302,6 +382,7 @@ Game.UpdateLetter = function(letter) {
 
 //The following is the main hangman post and is always active;
 //Main post base
+
 ctx.lineWidth=3;
 ctx.moveTo(30,390);
 ctx.lineTo(123,390);
@@ -412,80 +493,6 @@ ctx.beginPath();
 ctx.arc(46,395, 2, 0, Math.PI * 2, true);
 ctx.stroke();
 
-//These are the functions that will draw the body parts when activated
-Game.DrawHead = function() {
-  //outer circle
-  ctx.lineWidth=4;
-   ctx.beginPath();
-   ctx.arc(225, 145, 25, 0, Math.PI * 2, true);
-   ctx.moveTo(240, 150);
-   ctx.stroke();
-   // Mouth (clockwise)
-   ctx.beginPath();
-   ctx.arc(225, 150, 15, 0, Math.PI, false);
-   ctx.moveTo(65, 65);
-   ctx.stroke();
-   //eyes-right
-   ctx.beginPath();
-   ctx.arc(233,141,4,0,2*Math.PI, true);
-   ctx.stroke();
-   //eyes-left
-   ctx.beginPath();
-   ctx.arc(217,141,4,0,2*Math.PI, true);
-   ctx.stroke();
-  
- }
-
-Game.DrawTorso = function() {
-  ctx.lineWidth=4;
-  ctx.beginPath();
-  ctx.moveTo(225,170);
-  ctx.lineTo(225,260);
-  ctx.stroke();
-}
-
-Game.DrawLeftArm = function() {
-  //left arm
-  ctx.lineWidth=4;
-  ctx.beginPath();
-  ctx.moveTo(225,170);
-  ctx.lineTo(200,250);
-  ctx.stroke();
-}
-
-Game.DrawRightArm = function() {
-  //right arm
-  ctx.lineWidth=4;
-  ctx.beginPath();
-  ctx.moveTo(225,170);
-  ctx.lineTo(250,250);
-  ctx.stroke();
-}
-
-Game.DrawLeftLeg = function() {
-  //left leg
-  ctx.lineWidth=4;
-  ctx.beginPath();
-  ctx.moveTo(225,260);
-  ctx.lineTo(200,300);
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(200,300);
-  ctx.lineTo(210,350);
-  ctx.stroke();
-}
-
-Game.DrawRightLeg = function() {
-  //right leg
-  ctx.lineWidth=4;
-  ctx.beginPath();
-  ctx.moveTo(225,260);
-  ctx.lineTo(215,310);
-  ctx.stroke();
-  ctx.moveTo(215,310);
-  ctx.lineTo(228,355);
-  ctx.stroke();
-}
 
 /********************************************************************/
 /********************************************************************/
