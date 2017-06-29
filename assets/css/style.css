@@ -67,7 +67,13 @@ body {
 	color: #999;
 }
 
-@media  screen and (max-width: 940px)  {
+@media  screen and (max-width: 640px)  {
+	.header {
+		max-width: 100%;
+	}
+	.container {
+		max-width: 100%;
+	}
 	#pic1 {
 		display: none;
 	}
@@ -77,6 +83,7 @@ body {
 	}
 
 	#letters a {
+		font-size: 40px;
 		margin: 1px 1px 30px 1px;
 	}
 }
