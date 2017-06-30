@@ -45,8 +45,8 @@ body {
 }
 
 #letters a:hover {
-	background-color: lightblue;
-	color: black;
+	background-color: red;
+	color: #fff;
 }
 
 #WORD {
