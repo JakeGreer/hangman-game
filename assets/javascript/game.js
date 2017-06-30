@@ -62,36 +62,36 @@ Game.WordU = "";
 /********************************************************************/
 
 //Variables used for audio files
-var audio0 = new Audio("assets/images/rainbow (mp3cut.net).mp3");
-var audio1 = new Audio("assets/images/television (mp3cut.net).mp3");
-var audio2 = new Audio("assets/images/interpol (mp3cut.net).mp3");
-var audio3 = new Audio("assets/images/the-shins (mp3cut.net).mp3");
-var audio4 = new Audio("assets/images/whitesnake (mp3cut.net).mp3");
-var audio5 = new Audio("assets/images/the-killers (mp3cut.net).mp3");
-var audio6 = new Audio("assets/images/scorpions (mp3cut.net).mp3");
-var audio7 = new Audio("assets/images/misfits (mp3cut.net).mp3");
-var audio8 = new Audio("assets/images/kiss (mp3cut.net).mp3");
-var audio9 = new Audio("assets/images/lynyrd-skynyrd (mp3cut.net).mp3");
-var audio10 = new Audio("assets/images/sex-pistols (mp3cut.net).mp3");
-var audio11 = new Audio("assets/images/the-strokes (mp3cut.net).mp3");
-var audio12 = new Audio("assets/images/alice-cooper (mp3cut.net).mp3");
-var audio13 = new Audio("assets/images/prince (mp3cut.net).mp3");
-var audio14 = new Audio("assets/images/pearl-jam (mp3cut.net).mp3");
-var audio15 = new Audio("assets/images/GreenDay_-_I_walk_alone_cut_(mp3.pm).mp3");
-var audio16 = new Audio('assets/images/ACDC_-_Back_In_Black-sample.ogg');
-var audio17 = new Audio("assets/images/zz-top (mp3cut.net).mp3");
-var audio18 = new Audio("assets/images/foo-fighters (mp3cut.net).mp3");
-var audio19 = new Audio("assets/images/dead-kennedys (mp3cut.net).mp3");
-var audio20 = new Audio("assets/images/arctic-monkeys (mp3cut.net).mp3");
-var audio21 = new Audio("assets/images/rolling-stones (mp3cut.net).mp3");
-var audio22 = new Audio("assets/images/nofx (mp3cut.net).mp3");
-var audio23 = new Audio("assets/images/joy-division (mp3cut.net).mp3");
-var audio24 = new Audio("assets/images/pixies (mp3cut.net).mp3");
-var audio25 = new Audio("assets/images/queen (mp3cut.net).mp3");
-var audio26 = new Audio("assets/images/led-zeppelin (mp3cut.net).mp3");
-var audio27 = new Audio("assets/images/pennylane (mp3cut.net).mp3");
-var audio28 = new Audio("assets/images/pink-floyd (mp3cut.net).mp3");
-var audio29 = new Audio("assets/images/guns-n-roses (mp3cut.net).mp3");
+var audio0 = new Audio("assets/music/rainbow (mp3cut.net).mp3");
+var audio1 = new Audio("assets/music/television (mp3cut.net).mp3");
+var audio2 = new Audio("assets/music/interpol (mp3cut.net).mp3");
+var audio3 = new Audio("assets/music/the-shins (mp3cut.net).mp3");
+var audio4 = new Audio("assets/music/whitesnake (mp3cut.net).mp3");
+var audio5 = new Audio("assets/music/the-killers (mp3cut.net).mp3");
+var audio6 = new Audio("assets/music/scorpions (mp3cut.net).mp3");
+var audio7 = new Audio("assets/music/misfits (mp3cut.net).mp3");
+var audio8 = new Audio("assets/music/kiss (mp3cut.net).mp3");
+var audio9 = new Audio("assets/music/lynyrd-skynyrd (mp3cut.net).mp3");
+var audio10 = new Audio("assets/music/sex-pistols (mp3cut.net).mp3");
+var audio11 = new Audio("assets/music/the-strokes (mp3cut.net).mp3");
+var audio12 = new Audio("assets/music/alice-cooper (mp3cut.net).mp3");
+var audio13 = new Audio("assets/music/prince (mp3cut.net).mp3");
+var audio14 = new Audio("assets/music/pearl-jam (mp3cut.net).mp3");
+var audio15 = new Audio("assets/music/GreenDay_-_I_walk_alone_cut_(mp3.pm).mp3");
+var audio16 = new Audio('assets/music/ACDC_-_Back_In_Black-sample.ogg');
+var audio17 = new Audio("assets/music/zz-top (mp3cut.net).mp3");
+var audio18 = new Audio("assets/music/foo-fighters (mp3cut.net).mp3");
+var audio19 = new Audio("assets/music/dead-kennedys (mp3cut.net).mp3");
+var audio20 = new Audio("assets/music/arctic-monkeys (mp3cut.net).mp3");
+var audio21 = new Audio("assets/music/rolling-stones (mp3cut.net).mp3");
+var audio22 = new Audio("assets/music/nofx (mp3cut.net).mp3");
+var audio23 = new Audio("assets/music/joy-division (mp3cut.net).mp3");
+var audio24 = new Audio("assets/music/pixies (mp3cut.net).mp3");
+var audio25 = new Audio("assets/music/queen (mp3cut.net).mp3");
+var audio26 = new Audio("assets/music/led-zeppelin (mp3cut.net).mp3");
+var audio27 = new Audio("assets/music/pennylane (mp3cut.net).mp3");
+var audio28 = new Audio("assets/music/pink-floyd (mp3cut.net).mp3");
+var audio29 = new Audio("assets/music/guns-n-roses (mp3cut.net).mp3");
 
 /********************************************************************/
 /********************************************************************/
