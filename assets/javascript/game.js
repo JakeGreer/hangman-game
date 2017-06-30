@@ -398,14 +398,17 @@ Game.DrawMan = function() {
 
 //The following is the main hangman post and is always active;
 //Main post base
+debugger;
 
 ctx.lineWidth=3;
 ctx.moveTo(30,390);
 ctx.lineTo(123,390);
 ctx.stroke();
+
 ctx.moveTo(30,400);
 ctx.lineTo(120,400);
 ctx.stroke();
+
 ctx.moveTo(120,390);
 ctx.lineTo(120,400);
 ctx.stroke();
@@ -492,7 +495,6 @@ ctx.beginPath();
 ctx.arc(35,129, 2, 0, Math.PI * 2, true);
 ctx.stroke();
 //bolts 7
-ctx.lineWidth=1;
 ctx.beginPath();
 ctx.arc(35,75, 2, 0, Math.PI * 2, true);
 ctx.stroke();
@@ -501,7 +503,6 @@ ctx.beginPath();
 ctx.arc(45,75, 2, 0, Math.PI * 2, true);
 ctx.stroke();
 //bolts 9
-ctx.lineWidth=1;
 ctx.beginPath();
 ctx.arc(36,395, 2, 0, Math.PI * 2, true);
 ctx.stroke();
@@ -519,6 +520,8 @@ document.onkeyup = function(event) {
 
       // Determines which key was pressed.
       var userGuess = event.key;
+      userGuess.toLowerCase();
+      
       if (userGuess == 'a') {
         Game.UpdateLetter("a");
         document.getElementById("a").style.display="none";
