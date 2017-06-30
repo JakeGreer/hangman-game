@@ -39,6 +39,11 @@ body {
 
 }
 
+.side-panel {
+	width: 400px;
+	margin: 0 auto;
+}
+
 #letters a:hover {
 	background-color: lightblue;
 	color: black;
@@ -51,7 +56,7 @@ body {
 
 
 #canvas {
-	background: url(../images/guitar.jpg);
+	background: url(../images/Rock-Random-Wallpaper.jpg);
 	background-color: #000;
 	background-size: 400px;
 	background-position: left;
