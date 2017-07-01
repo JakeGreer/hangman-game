@@ -41,6 +41,7 @@ Words.List[26] = "led zeppelin";
 Words.List[27] = "the beatles";
 Words.List[28] = "pink floyd";
 Words.List[29] = "guns n roses";
+Words.List[30] = "the grinns";
 
 Words.length = Words.List.length;
 
@@ -62,16 +63,16 @@ Game.WordU = "";
 /********************************************************************/
 
 //Variables used for audio files
-var audio0 = new Audio("assets/music/rainbow (mp3cut.net).mp3");
-var audio1 = new Audio("assets/music/television (mp3cut.net).mp3");
-var audio2 = new Audio("assets/music/interpol (mp3cut.net).mp3");
-var audio3 = new Audio("assets/music/the-shins (mp3cut.net).mp3");
-var audio4 = new Audio("assets/music/whitesnake (mp3cut.net).mp3");
-var audio5 = new Audio("assets/music/the-killers (mp3cut.net).mp3");
-var audio6 = new Audio("assets/music/scorpions (mp3cut.net).mp3");
-var audio7 = new Audio("assets/music/misfits (mp3cut.net).mp3");
-var audio8 = new Audio("assets/music/kiss (mp3cut.net).mp3");
-var audio9 = new Audio("assets/music/lynyrd-skynyrd (mp3cut.net).mp3");
+var audio0  = new Audio("assets/music/rainbow (mp3cut.net).mp3");
+var audio1  = new Audio("assets/music/television (mp3cut.net).mp3");
+var audio2  = new Audio("assets/music/interpol (mp3cut.net).mp3");
+var audio3  = new Audio("assets/music/the-shins (mp3cut.net).mp3");
+var audio4  = new Audio("assets/music/whitesnake (mp3cut.net).mp3");
+var audio5  = new Audio("assets/music/the-killers (mp3cut.net).mp3");
+var audio6  = new Audio("assets/music/scorpions (mp3cut.net).mp3");
+var audio7  = new Audio("assets/music/misfits (mp3cut.net).mp3");
+var audio8  = new Audio("assets/music/kiss (mp3cut.net).mp3");
+var audio9  = new Audio("assets/music/lynyrd-skynyrd (mp3cut.net).mp3");
 var audio10 = new Audio("assets/music/sex-pistols (mp3cut.net).mp3");
 var audio11 = new Audio("assets/music/the-strokes (mp3cut.net).mp3");
 var audio12 = new Audio("assets/music/alice-cooper (mp3cut.net).mp3");
@@ -92,6 +93,7 @@ var audio26 = new Audio("assets/music/led-zeppelin (mp3cut.net).mp3");
 var audio27 = new Audio("assets/music/pennylane (mp3cut.net).mp3");
 var audio28 = new Audio("assets/music/pink-floyd (mp3cut.net).mp3");
 var audio29 = new Audio("assets/music/guns-n-roses (mp3cut.net).mp3");
+var audio30 = new Audio("assets/music/the-grinns (mp3cut.net).mp3");
 
 /********************************************************************/
 /********************************************************************/
@@ -180,13 +182,15 @@ Game.UpdateLetter = function(letter) {
       Game.wordAr[i] = "&nbsp;&nbsp;";
     }
   }
-
+  //create two new variables. one equals the word and one equals the guessed word. used for comparison.
   Game.wordOne = Game.wordAr.join(" ");
   Game.wordTwo = Game.underlineAr.join(" ");
+
+  //update drawing based on lives left
   Game.DrawMan();
 
   //alert if word are equal and user wins
-  //checks to see which word and plays the audio based off of the answer.
+  //checks to see which music plays, based off of the answer.
   if(Game.wordOne == Game.wordTwo) 
   {
     if(Game.Word == 'rainbow') {
@@ -279,14 +283,19 @@ Game.UpdateLetter = function(letter) {
     if(Game.Word == 'guns n roses') {
       audio29.play();
     }
+    if(Game.Word == 'the grinns') {
+      audio30.play();
+    }
+
     document.getElementById("WORD").innerHTML == Game.Word;
-    myVar = setTimeout(Game.AlertWin, 17000);
+
+    setTimeout(Game.AlertWin, 17000);
   }
   //alert if lives run out
   if(Game.lives < 1) 
   {
     document.getElementById("WORD").innerHTML == Game.Word;
-    myVar = setTimeout(Game.AlertLoss, 1000);
+    setTimeout(Game.AlertLoss, 1000);
   }
 }
 
@@ -398,7 +407,7 @@ Game.DrawMan = function() {
 
 //The following is the main hangman post and is always active;
 //Main post base
-debugger;
+
 
 ctx.lineWidth=3;
 ctx.moveTo(30,390);
@@ -521,7 +530,7 @@ document.onkeyup = function(event) {
       // Determines which key was pressed.
       var userGuess = event.key;
       userGuess.toLowerCase();
-      
+
       if (userGuess == 'a') {
         Game.UpdateLetter("a");
         document.getElementById("a").style.display="none";
