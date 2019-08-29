@@ -4,7 +4,7 @@ This Hangman game is based entirely off the rock and roll genre of music and is 
 
 
 ## Member:
-Jake Greer (Frontend / Backend)
+Jake Greer
 
 
 ## Technologies Utilized
