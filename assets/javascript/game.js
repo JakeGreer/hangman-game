@@ -178,9 +178,16 @@ class Model {
             this.state.lives--;
         }
 
-        if(word === this.state.wordArray.join('')) {
-            var audio = new Audio(this.state.word.audio);
+        if(this.state.lives === 0) {
+            this._resetGame();
+        }
+
+        if(word === this.state.lineArray.join('')) {
+            let audio = new Audio(this.state.word.audio);
             audio.play();
+            setTimeout( () => {
+                this._resetGame()
+            }, 16 * 1000)
         }
 
         this._commit(this.state)
@@ -193,21 +200,23 @@ class Model {
                 this.state.wordArray.push(word.charAt(i));
             }
             else {
-                this.state.lineArray.push("&nbsp;&nbsp;");
-                this.state.wordArray.push("&nbsp;&nbsp;");
+                this.state.lineArray.push(" ");
+                this.state.wordArray.push(" ");
             }
         }
         return this.state.lineArray.join(" ");
     }
 
-    resetGame() {
-        this._commit({
+    _resetGame() {
+        this.state = {
+            ...this.state,
             lives: 7,
             word: null,
             guesses: [],
             lineArray: [],
             wordArray: []
-        })
+        }
+        this._commit(this.state)
         this._pullWord();
     }
   
@@ -303,154 +312,159 @@ class View {
 
     updateGameView(props) {
         this.wordValue.textContent = props.lineArray.join(' ');
+        this.livesCount.textContent = props.lives;
         let guessed = props.guesses[props.guesses.length - 1];
-        console.log("Guessed: ", guessed);
         if(this.letters.find( o => o === guessed)) {
             let button = this.buttons.find( o => o.className === guessed);
-            console.log('button: ', button)
             button.removeAttribute('onclick');
             button.style.display = "none";
+
+            this._drawMan(props.lives)
         }
     }
 
-    _drawBasePost() {;
-        this.ctx.lineWidth=3;
-        this.ctx.moveTo(30,390);
-        this.ctx.lineTo(123,390);
-        this.ctx.stroke();
+    _drawBasePost() {
+        let ctx = this.ctx;
+        ctx.lineWidth=3;
+        ctx.moveTo(30,390);
+        ctx.lineTo(123,390);
+        ctx.stroke();
         
-        this.ctx.moveTo(30,400);
-        this.ctx.lineTo(120,400);
-        this.ctx.stroke();
+        ctx.moveTo(30,400);
+        ctx.lineTo(120,400);
+        ctx.stroke();
         
-        this.ctx.moveTo(120,390);
-        this.ctx.lineTo(120,400);
-        this.ctx.stroke();
+        ctx.moveTo(120,390);
+        ctx.lineTo(120,400);
+        ctx.stroke();
         
         //Main Post vertical bar 1
-        this.ctx.moveTo(30,60);
-        this.ctx.lineTo(30,400);
-        this.ctx.stroke();
+        ctx.moveTo(30,60);
+        ctx.lineTo(30,400);
+        ctx.stroke();
         //Main Post vertical bar 2
-        this.ctx.moveTo(50,60);
-        this.ctx.lineTo(50,100);
-        this.ctx.stroke();
+        ctx.moveTo(50,60);
+        ctx.lineTo(50,100);
+        ctx.stroke();
         //Main Post vertical bar 3
-        this.ctx.moveTo(50,120);
-        this.ctx.lineTo(50,390);
-        this.ctx.stroke();
+        ctx.moveTo(50,120);
+        ctx.lineTo(50,390);
+        ctx.stroke();
         //Main Post vertical bar top
-        this.ctx.moveTo(30,60);
-        this.ctx.lineTo(50,60);
-        this.ctx.stroke();
+        ctx.moveTo(30,60);
+        ctx.lineTo(50,60);
+        ctx.stroke();
         //Main Post horizontal bar 1
-        this.ctx.moveTo(50,60);
-        this.ctx.lineTo(225,60);
-        this.ctx.stroke();
+        ctx.moveTo(50,60);
+        ctx.lineTo(225,60);
+        ctx.stroke();
         //Main Post horizontal bar 2
-        this.ctx.moveTo(50,80);
-        this.ctx.lineTo(70,80);
-        this.ctx.stroke();
+        ctx.moveTo(50,80);
+        ctx.lineTo(70,80);
+        ctx.stroke();
         //Main Post horizontal bar 3
-        this.ctx.moveTo(90,80);
-        this.ctx.lineTo(225,80);
-        this.ctx.stroke();
+        ctx.moveTo(90,80);
+        ctx.lineTo(225,80);
+        ctx.stroke();
         //Main Post horizontal bar side
-        this.ctx.moveTo(225,60);
-        this.ctx.lineTo(225,80);
-        this.ctx.stroke();
+        ctx.moveTo(225,60);
+        ctx.lineTo(225,80);
+        ctx.stroke();
         //Main post support bar
-        this.ctx.moveTo(30,120);
-        this.ctx.lineTo(90,60);
-        this.ctx.stroke();
+        ctx.moveTo(30,120);
+        ctx.lineTo(90,60);
+        ctx.stroke();
         //Main post support bar 2
-        this.ctx.moveTo(30,140);
-        this.ctx.lineTo(110,60);
-        this.ctx.stroke();
+        ctx.moveTo(30,140);
+        ctx.lineTo(110,60);
+        ctx.stroke();
         //Rope-Hanging
-        this.ctx.moveTo(225,80);
-        this.ctx.lineTo(225,120);
-        this.ctx.stroke();
+        ctx.moveTo(225,80);
+        ctx.lineTo(225,120);
+        ctx.stroke();
         //Rope-bar
-        this.ctx.moveTo(215,60);
-        this.ctx.lineTo(215,80);
-        this.ctx.stroke();
+        ctx.moveTo(215,60);
+        ctx.lineTo(215,80);
+        ctx.stroke();
         //Rope-bar 2
-        this.ctx.moveTo(220,60);
-        this.ctx.lineTo(220,80);
-        this.ctx.stroke();
+        ctx.moveTo(220,60);
+        ctx.lineTo(220,80);
+        ctx.stroke();
         //Rope-bar 3
-        this.ctx.moveTo(210,60);
-        this.ctx.lineTo(210,80);
-        this.ctx.stroke();
+        ctx.moveTo(210,60);
+        ctx.lineTo(210,80);
+        ctx.stroke();
         //bolts 1
-        this.ctx.lineWidth=1;
-        this.ctx.beginPath();
-        this.ctx.arc(35,64, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        ctx.arc(35,64, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
         //bolts 2
-        this.ctx.beginPath();
-        this.ctx.arc(45,64, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(45,64, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
         //bolts 3
-        this.ctx.beginPath();
-        this.ctx.arc(91,64, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(91,64, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
         //bolts 4
-        this.ctx.beginPath();
-        this.ctx.arc(100,64, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(100,64, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
         //bolts 5
-        this.ctx.beginPath();
-        this.ctx.arc(35,119, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(35,119, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
         //bolts 6
-        this.ctx.beginPath();
-        this.ctx.arc(35,129, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(35,129, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
         //bolts 7
-        this.ctx.beginPath();
-        this.ctx.arc(35,75, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(35,75, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
         //bolts 8
-        this.ctx.beginPath();
-        this.ctx.arc(45,75, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(45,75, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
         //bolts 9
-        this.ctx.beginPath();
-        this.ctx.arc(36,395, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(36,395, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
         //bolts 10
-        this.ctx.beginPath();
-        this.ctx.arc(46,395, 2, 0, Math.PI * 2, true);
-        this.ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(46,395, 2, 0, Math.PI * 2, true);
+        ctx.stroke();
     }
 
-    _drawHead(ctx) {
+    _drawHead() {
+        let ctx = this.ctx;
         //outer circle
         ctx.lineWidth=4;
-         ctx.beginPath();
-         ctx.arc(225, 145, 25, 0, Math.PI * 2, true);
-         ctx.stroke();
-         
-         //eyes-right
-         ctx.beginPath();
-         ctx.arc(233,141,4,0,2*Math.PI, true);
-         ctx.stroke();
-         //eyes-left
-         ctx.beginPath();
-         ctx.arc(217,141,4,0,2*Math.PI, true);
-         ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(225, 145, 25, 0, Math.PI * 2, true);
+        ctx.stroke();
+        
+        //eyes-right
+        ctx.beginPath();
+        ctx.arc(233,141,4,0,2*Math.PI, true);
+        ctx.stroke();
+        //eyes-left
+        ctx.beginPath();
+        ctx.arc(217,141,4,0,2*Math.PI, true);
+        ctx.stroke();
         
     }
     
-    _drawMouth(ctx) {
+    _drawMouth() {
+        let ctx = this.ctx;
         ctx.beginPath();
         ctx.arc(225, 150, 15, 0, Math.PI, false);
         ctx.stroke();
     }
     
-    _drawTorso(ctx) {
+    _drawTorso() {
+        let ctx = this.ctx;
         ctx.lineWidth=4;
         ctx.beginPath();
         ctx.moveTo(225,170);
@@ -458,7 +472,8 @@ class View {
         ctx.stroke();
     }
     
-    _drawLeftArm(ctx) {
+    _drawLeftArm() {
+        let ctx = this.ctx;
         //left arm
         ctx.lineWidth=4;
         ctx.beginPath();
@@ -467,7 +482,8 @@ class View {
         ctx.stroke();
     }
     
-    _drawRightArm(ctx) {
+    _drawRightArm() {
+        let ctx = this.ctx;
         //right arm
         ctx.lineWidth=4;
         ctx.beginPath();
@@ -476,7 +492,8 @@ class View {
         ctx.stroke();
     }
     
-    _drawLeftLeg(ctx) {
+    _drawLeftLeg() {
+        let ctx = this.ctx;
         //left leg
         ctx.lineWidth=4;
         ctx.beginPath();
@@ -485,7 +502,8 @@ class View {
         ctx.stroke();
     }
     
-    _drawRightLeg(ctx) {
+    _drawRightLeg() {
+        let ctx = this.ctx;
         //right leg
         ctx.lineWidth=4;
         ctx.beginPath();
@@ -498,22 +516,25 @@ class View {
         //calls drawing functions for each lif lost;
         if(lives == 6) {
             this._drawHead();
-            this.drawMouth();
+            this._drawMouth();
         }
         if(lives == 5) {
-            this.drawTorso();
+            this._drawTorso();
         }
         if(lives == 4) {
-            this.drawLeftArm();
+            this._drawLeftArm();
         }
         if(lives == 3) {
-            this.drawRightArm();
+            this._drawRightArm();
         }
         if(lives == 2) {
-            this.drawLeftLeg();
+            this._drawLeftLeg();
         }
         if(lives == 1) {
-            this.drawRightLeg();
+            this._drawRightLeg();
+        }
+        if(lives == 0) {
+            console.log("Zero reset buttons")
         }
     }
   
@@ -540,7 +561,6 @@ class Controller {
     }
   
     onGameChanged = props => {
-        console.log("This: ", this);
         this.view.updateGameView(props);
     }
 
