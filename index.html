@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
 	<title>Hangman Game</title>
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
@@ -14,80 +15,9 @@
 
 </head>
 <body>
-<!-- ************ HEADER ************** -->
-
-	<div class="header">
-		<div id="pic1">
-			<img height="150" width="auto" src="assets/images/rockOn.jpg">
-		</div>
-		<h1 class="title">Rock and Roll Hangman</h1>
-		<h3 class="title">By: Jake Greer</h3>
-	</div>
-<!-- ************ BODY *************** -->
-	<div class="container">
-		<canvas id="canvas" width="400" height="400"></canvas>
-		<div id="header">
-			<p>
-				You have <span id="lives">7</span> lives left.
-				<!-- <br> -->
-				<!-- Category: <span id="category"></span> -->
-			</p>
-			<h1 id="WORD">------</h1>
-		</div>
-
-	<!-- A - Z Buttons -->
-	
-		<div id="letters">
-			<a id="a">A</a>
-			<a id="b">B</a>
-			<a id="c">C</a>
-			<a id="d">D</a>
-			<a id="e">E</a>
-			<a id="f">F</a>
-			<a id="g">G</a>
-			<a id="h">H</a>
-			<a id="i">I</a>
-			<a id="j">J</a>
-			<a id="k">K</a>
-			<a id="l">L</a>
-			<a id="m">M</a>
-			<a id="n">N</a>
-			<a id="o">O</a>
-			<a id="p">P</a>
-			<a id="q">Q</a>
-			<a id="r">R</a>
-			<a id="s">S</a>
-			<a id="t">T</a>
-			<a id="u">U</a>
-			<a id="v">V</a>
-			<a id="w">W</a>
-			<a id="x">X</a>
-			<a id="y">Y</a>
-			<a id="z">Z</a>
-		</div>
-
-<!-- HINT PANEL -->
-
-		<div class="side-panel">
-			<h1>Hints: <br> ______</h1>
-			<ul>
-				<li>All words are band names from the rock genre!</li>
-				<li>The keyboard can be used along with the buttons</li>
-				<li>Try using all your vowels first.</li>
-				<li>If you win, a song from the band will play for 15 seconds before refreshing a new game</li>
-			</ul>
-		</div>
-	</div>
-
-<!-- FOOTER -->
-
-	<div id="footer">
-		<footer>
-			<small>copyright &copy; 2017 Jake Greer</small>
-		</footer>
-	</div>
+    <div id="root"></div>
 </body>
 <!-- <script rel="javascript" src="assets/javascript/words.js" type="text/javascript"></script> -->
-<script rel="javascript" src="assets/javascript/game.js" type="text/javascript"></script>
+<script rel="javascript" src="assets/javascript/game.min.js" type="text/javascript"></script>
 
 </html>

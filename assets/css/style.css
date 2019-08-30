@@ -6,7 +6,12 @@ body {
 .title {
 	margin: 0;
 }
-.header {
+
+.image-top {
+    width: 150px;
+}
+
+.heading {
 	text-align: center;
 	font-family: 'Indie Flower', cursive, sans-serif;
 	background-color: #000;
@@ -25,17 +30,15 @@ body {
 	overflow: auto;
 }
 
-#letters a {
+.letters button {
 	background-color: #fff;
 	font-size: 25px;
 	font-weight: bold;
 	font-family: 'Indie Flower', cursive, sans-serif;
 	color: black;
-	padding: 5px;
 	margin: 1px 1px 20px 1px;
 	cursor: pointer;
 	border-radius: 5px;
-	line-height: 2;
 
 }
 
@@ -43,8 +46,9 @@ body {
 	width: 400px;
 	margin: 0 auto;
 	font-size: 16px;
-	font-family: 'Fresca', sans-serif;
-
+    font-family: 'Fresca', sans-serif;
+    text-align: center;
+    color: #fff;
 }
 
 li {
@@ -52,18 +56,18 @@ li {
 	
 }
 
-#letters a:hover {
-	background-color: red;
+.letters button:hover {
+	background-color: darkred;
 	color: #fff;
 }
 
-#WORD {
+.word {
 	font-size: 40px;
 	font-family: 'Indie Flower', cursive, sans-serif;
 }
 
 
-#canvas {
+.hangman-canvas {
 	background: url(../images/Rock-Random-Wallpaper.jpg);
 	background-color: #000;
 	background-size: 400px;
@@ -81,21 +85,10 @@ li {
 }
 
 @media  screen and (max-width: 640px)  {
-	.header {
-		max-width: 100%;
-	}
-	.container {
-		max-width: 100%;
-	}
-	#pic1 {
+	.image-top {
 		display: none;
 	}
-
-	#pic2 {
-		display: none;
-	}
-
-	#letters a {
+	.letters button {
 		font-size: 40px;
 		margin: 1px 1px 30px 1px;
 	}
