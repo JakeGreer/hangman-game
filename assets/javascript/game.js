@@ -178,10 +178,6 @@ class Model {
             this.state.lives--;
         }
 
-        if(this.state.lives === 0) {
-            this._resetGame();
-        }
-
         if(word === this.state.lineArray.join('')) {
             let audio = new Audio(this.state.word.audio);
             audio.play();
@@ -191,6 +187,10 @@ class Model {
         }
 
         this._commit(this.state)
+
+        if(this.state.lives === 0) {
+            this._resetGame();
+        }
     }
   
     _setArrays(word) {
@@ -216,8 +216,8 @@ class Model {
             lineArray: [],
             wordArray: []
         }
-        this._commit(this.state)
         this._pullWord();
+        this._commit(this.state)
     }
   
 }
@@ -316,7 +316,7 @@ class View {
         let guessed = props.guesses[props.guesses.length - 1];
         if(this.letters.find( o => o === guessed)) {
             let button = this.buttons.find( o => o.className === guessed);
-            button.removeAttribute('onclick');
+            //button.removeAttribute('onclick');
             button.style.display = "none";
 
             this._drawMan(props.lives)
@@ -513,6 +513,7 @@ class View {
     }
     
     _drawMan(lives) {
+        console.log("Lives: ", lives)
         //calls drawing functions for each lif lost;
         if(lives == 6) {
             this._drawHead();
@@ -534,7 +535,9 @@ class View {
             this._drawRightLeg();
         }
         if(lives == 0) {
-            console.log("Zero reset buttons")
+            this.buttons.forEach( function(button) {
+                button.style.display = "inline"
+            })
         }
     }
   
